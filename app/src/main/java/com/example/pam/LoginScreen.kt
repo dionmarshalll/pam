@@ -19,14 +19,17 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
-import com.example.pam.ui.theme.PamTheme
 import androidx.compose.ui.graphics.Color
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.example.pam.ui.theme.PamTheme
+
 
 
 
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
 
@@ -82,6 +85,8 @@ fun LoginScreen() {
         Button(
             onClick = {
                 // Logika untuk login tambahin sini
+                navController.navigate("profile")
+
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -94,10 +99,10 @@ fun LoginScreen() {
 
         // Tombol ke register
         Row(
-            verticalAlignment = Alignment.CenterVertically // Tambahkan ini
+            verticalAlignment = Alignment.CenterVertically
         ) {
             Text("Belum punya akun? ")
-            TextButton(onClick = { /* Navigasi ke halaman register */ }) {
+            TextButton(onClick = { /* Navigasi ke register */ }) {
                 Text("Daftar di sini")
             }
         }
@@ -108,6 +113,6 @@ fun LoginScreen() {
 @Composable
 fun LoginScreenPreview() {
     PamTheme {
-        LoginScreen()
+        LoginScreen(navController = rememberNavController())
     }
 }
