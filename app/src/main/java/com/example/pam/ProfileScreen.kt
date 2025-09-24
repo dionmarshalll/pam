@@ -30,7 +30,6 @@ fun ProfileScreen(navController: NavController) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        // Placeholder untuk Avatar
         Image(
             imageVector = Icons.Default.Person,
             contentDescription = "Avatar Profil",
@@ -43,7 +42,6 @@ fun ProfileScreen(navController: NavController) {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Nama dan Email Pengguna
         Text(
             text = "Nama Pengguna",
             style = MaterialTheme.typography.headlineSmall
@@ -72,7 +70,6 @@ fun ProfileScreen(navController: NavController) {
         // Tombol Logout
         OutlinedButton(
             onClick = {
-                // Kembali ke login dan hapus semua halaman sebelumnya dari tumpukan
                 navController.navigate("login") {
                     popUpTo(0)
                 }
