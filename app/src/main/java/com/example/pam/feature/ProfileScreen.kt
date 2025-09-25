@@ -1,5 +1,6 @@
 package com.example.pam.feature
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -26,6 +27,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.pam.ui.theme.PamTheme
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import com.example.pam.R
 
 // Data class untuk menampung info user
 data class User(
@@ -51,9 +55,30 @@ fun ProfileScreen(navController: NavController, user: User) {
                 .fillMaxWidth()
                 .height(300.dp)
                 .clip(RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp))
-                .background(Color(0xFF4256B8)),
+                .background(Color(0xFF3643FF)),
             contentAlignment = Alignment.TopCenter
         ) {
+
+            Image(
+                painter = painterResource(id = R.drawable.candy_background_1),
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier
+                    .align(Alignment.TopStart)
+                    .fillMaxWidth(0.5f)
+                    .offset(y = (-20).dp)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.candy_background_2),
+                contentDescription = null,
+                contentScale = ContentScale.FillWidth,
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .fillMaxWidth(0.5f)
+                    .offset(x = (50).dp)
+            )
+
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Spacer(modifier = Modifier.height(64.dp))
                 Text(
