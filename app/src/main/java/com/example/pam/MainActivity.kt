@@ -42,7 +42,9 @@ class MainActivity : ComponentActivity() {
                         composable("avatar") {
                             AvatarScreen(navController = navController)
                         }
-                        // slot composable register
+                        composable("register") {
+                            RegisterScreen(navController = navController)
+                        }
                     }
                 }
             }
