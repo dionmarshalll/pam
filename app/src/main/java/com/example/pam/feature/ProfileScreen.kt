@@ -27,7 +27,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.pam.ui.theme.PamTheme
 import androidx.compose.ui.graphics.SolidColor
 
-// Data class untuk menampung info user
+
 data class User(
     val firstName: String,
     val lastName: String,
@@ -43,15 +43,15 @@ fun ProfileScreen(navController: NavController, user: User) {
     Box(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF0F0F5)) // Background abu-abu muda
+            .background(Color(0xFF3643FF))
     ) {
-        // Bagian atas dengan background biru
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(300.dp)
                 .clip(RoundedCornerShape(bottomStart = 24.dp, bottomEnd = 24.dp))
-                .background(Color(0xFF4256B8)),
+                .background(Color(0xFF3643FF)),
             contentAlignment = Alignment.TopCenter
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
