@@ -43,7 +43,7 @@ fun RegisterScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color(0xFF3643FF))
-            .verticalScroll(rememberScrollState()) // Scroll sangat penting untuk form panjang ini
+            .verticalScroll(rememberScrollState())
     ) {
         // --- Latar Belakang Candy (Sama seperti LoginScreen) ---
         Image(
