@@ -28,7 +28,6 @@ import com.example.pam.ui.theme.PamTheme
 
 @Composable
 fun RegisterScreen(navController: NavController) {
-    // State untuk setiap input field
     var firstName by remember { mutableStateOf("") }
     var lastName by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
@@ -45,7 +44,6 @@ fun RegisterScreen(navController: NavController) {
             .background(Color(0xFF3643FF))
             .verticalScroll(rememberScrollState())
     ) {
-        // --- Latar Belakang Candy (Sama seperti LoginScreen) ---
         Image(
             painter = painterResource(id = R.drawable.candy_background_2),
             contentDescription = null,
@@ -82,7 +80,7 @@ fun RegisterScreen(navController: NavController) {
                     scaleX = -1f
                 }
         )
-        // --- End Latar Belakang ---
+        // --- Latar Belakang ---
 
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -259,7 +257,7 @@ fun RegisterScreen(navController: NavController) {
 
                     // Tombol Sign Up
                     Button(
-                        onClick = { navController.navigate("login") }, // Navigasi ke login setelah daftar
+                        onClick = { navController.navigate("login") },
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(50.dp),
