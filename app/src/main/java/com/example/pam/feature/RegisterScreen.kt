@@ -1,26 +1,16 @@
-package com.example.pam.feature
+package com.example.pam
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -33,129 +23,210 @@ import com.example.pam.ui.theme.PamTheme
 
 @Composable
 fun RegisterScreen(navController: NavController) {
-    var firstName by remember { mutableStateOf("") }
-    var lastName by remember { mutableStateOf("") }
+    // State untuk setiap input field
+    var namaDepan by remember { mutableStateOf("") }
+    var namaBelakang by remember { mutableStateOf("") }
     var username by remember { mutableStateOf("") }
+    var nomorTelepon by remember { mutableStateOf("") }
+    var alamat by remember { mutableStateOf("") }
+    var tanggalLahir by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
-    var phone by remember { mutableStateOf("") }
-    var address by remember { mutableStateOf("") }
-    var dob by remember { mutableStateOf("") }
+    var konfirmasiPassword by remember { mutableStateOf("") }
 
-    Column (
+    // Menambahkan scroll agar layout tidak overflow pada layar kecil
+    Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(32.dp)
-            .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.Top,
+            .padding(horizontal = 32.dp)
+            .verticalScroll(rememberScrollState()), // Penting untuk form yang panjang
         horizontalAlignment = Alignment.CenterHorizontally
-    ){ Text(
-        text = "Registrasi Akun",
-        fontSize = 28.sp,
-        fontWeight = FontWeight.Bold,
-        color = MaterialTheme.colorScheme.primary
-    )
+    ) {
+        Spacer(modifier = Modifier.height(48.dp))
+        Text(
+            text = "Buat Akun Baru",
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(text = "Isi data di bawah untuk mendaftar", fontSize = 16.sp, color = Color.Gray)
+        Spacer(modifier = Modifier.height(48.dp))
 
-        Spacer(modifier = Modifier.height(24.dp))
-
-        // First Name
+        // Input field untuk Nama Depan
         OutlinedTextField(
-            value = firstName,
-            onValueChange = { firstName = it },
-            label = { Text("First Name") },
+            value = namaDepan,
+            onValueChange = { namaDepan = it },
+            label = { Text("Nama Depan") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Ikon Nama Depan"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Last Name
+        // Input field untuk Nama Belakang
         OutlinedTextField(
-            value = lastName,
-            onValueChange = { lastName = it },
-            label = { Text("Last Name") },
+            value = namaBelakang,
+            onValueChange = { namaBelakang = it },
+            label = { Text("Nama Belakang") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Ikon Nama Belakang"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Username
+        // Input field untuk Username
         OutlinedTextField(
             value = username,
             onValueChange = { username = it },
             label = { Text("Username") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.AccountCircle,
+                    contentDescription = "Ikon Username"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
+        // Input field untuk Nomor Telepon
+        OutlinedTextField(
+            value = nomorTelepon,
+            onValueChange = { nomorTelepon = it },
+            label = { Text("Nomor Telepon") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Phone,
+                    contentDescription = "Ikon Nomor Telepon"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        // Email
+        // Input field untuk Alamat
+        OutlinedTextField(
+            value = alamat,
+            onValueChange = { alamat = it },
+            label = { Text("Alamat") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Home,
+                    contentDescription = "Ikon Alamat"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Input field untuk Tanggal Lahir
+        OutlinedTextField(
+            value = tanggalLahir,
+            onValueChange = { tanggalLahir = it },
+            label = { Text("Tanggal Lahir (DD/MM/YYYY)") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = "Ikon Tanggal Lahir"
+                )
+            },
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+            modifier = Modifier.fillMaxWidth()
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Input field untuk Email
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text("Email") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Email,
+                    contentDescription = "Ikon Email"
+                )
+            },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Password
+        // Input Password
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
             label = { Text("Password") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = "Ikon Password"
+                )
+            },
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
         )
+        Spacer(modifier = Modifier.height(16.dp))
 
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Phone Number
+        // Input Konfirmasi Password
         OutlinedTextField(
-            value = phone,
-            onValueChange = { phone = it },
-            label = { Text("Phone Number") },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+            value = konfirmasiPassword,
+            onValueChange = { konfirmasiPassword = it },
+            label = { Text("Konfirmasi Password") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Lock,
+                    contentDescription = "Ikon Konfirmasi Password"
+                )
+            },
+            visualTransformation = PasswordVisualTransformation(),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
             modifier = Modifier.fillMaxWidth()
         )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Address
-        OutlinedTextField(
-            value = address,
-            onValueChange = { address = it },
-            label = { Text("Address") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
-        Spacer(modifier = Modifier.height(12.dp))
-
-        // Date of Birth
-        OutlinedTextField(
-            value = dob,
-            onValueChange = { dob = it },
-            label = { Text("Date of Birth (DD/MM/YYYY)") },
-            modifier = Modifier.fillMaxWidth()
-        )
-
         Spacer(modifier = Modifier.height(24.dp))
 
-        // Tombol Save
+        // Tombol Daftar
         Button(
             onClick = {
-                // Logika simpan data
+                // Logika untuk register tambahin sini
                 navController.navigate("login")
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(50.dp)
         ) {
-            Text("Save")
+            Text("Daftar")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        // Teks untuk kembali ke Login
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text("Sudah punya akun? ")
+            TextButton(onClick = { navController.navigate("login") }) {
+                Text("Masuk di sini")
+            }
+        }
+        Spacer(modifier = Modifier.height(48.dp))
     }
 }
+
 @Preview(showBackground = true)
 @Composable
 fun RegisterScreenPreview() {
@@ -163,4 +234,3 @@ fun RegisterScreenPreview() {
         RegisterScreen(navController = rememberNavController())
     }
 }
-
