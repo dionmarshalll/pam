@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,28 +30,78 @@ fun LoginScreen(navController: NavController) {
     var password by remember { mutableStateOf("") }
 
     Box(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF3643FF))
     ) {
-        // Background gradient/image
+
+//        Image(
+//            painter = painterResource(id = R.drawable.candy_background_1),
+//            contentDescription = null,
+//            contentScale = ContentScale.FillWidth,
+//            modifier = Modifier
+//                .align(Alignment.TopStart)
+//                .fillMaxWidth(0.6f)
+//                .offset(y = (-20).dp)
+//        )
+        Image(
+            painter = painterResource(id = R.drawable.candy_background_2),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .fillMaxWidth(0.5f)
+                .offset(y = (-20).dp)
+                .offset(x = (50).dp)
+        )
         Image(
             painter = painterResource(id = R.drawable.candy_background_1),
             contentDescription = null,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier.fillMaxSize()
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .align(Alignment.BottomStart)
+                .fillMaxWidth(0.6f)
+                .offset(y = 20.dp)
+                .graphicsLayer {
+                    rotationZ = 180f
+                    scaleX = -1f
+                }
+        )
+        Image(
+            painter = painterResource(id = R.drawable.candy_background_2),
+            contentDescription = null,
+            contentScale = ContentScale.FillWidth,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .fillMaxWidth(0.5f)
+                .offset(x = 40.dp)
+                .graphicsLayer {
+                    rotationZ = 180f
+                    scaleX = -1f
+                }
         )
 
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            // Card container untuk form
-            Card(
+            Spacer(modifier = Modifier.height(100.dp))
+
+
+            Text(
+                text = "Login",
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+
+            Spacer(modifier = Modifier.height(60.dp))
+
+              Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 32.dp),
+                    .padding(vertical = 32.dp)
+                    .padding(horizontal = 32.dp),
                 shape = RoundedCornerShape(24.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White
@@ -62,40 +113,44 @@ fun LoginScreen(navController: NavController) {
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(32.dp),
+                        .padding(30.dp),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    // Judul
-                    Text(
-                        text = "Login",
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFF1A1D1E)
-                    )
-
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     // Email field
                     OutlinedTextField(
                         value = email,
                         onValueChange = { email = it },
-                        label = { Text("Email") },
+                        label = {
+                            Text(
+                                "Email",
+                                color = Color(0xFF9CA3AF)
+                            )
+                        },
                         singleLine = true,
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color(0xFF6366F1),
-                            unfocusedBorderColor = Color(0xFFE5E7EB)
+                            focusedBorderColor = Color(0xFF3643FF),
+                            unfocusedBorderColor = Color(0xFFE5E7EB),
+                            focusedLabelColor = Color(0xFF3643FF),
+                            cursorColor = Color(0xFF3643FF)
                         )
                     )
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    // Password
+                    // Password field
                     OutlinedTextField(
                         value = password,
                         onValueChange = { password = it },
-                        label = { Text("Password") },
+                        label = {
+                            Text(
+                                "Password",
+                                color = Color(0xFF9CA3AF)
+                            )
+                        },
                         singleLine = true,
                         visualTransformation = PasswordVisualTransformation(),
                         keyboardOptions = androidx.compose.foundation.text.KeyboardOptions(
@@ -104,14 +159,16 @@ fun LoginScreen(navController: NavController) {
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(12.dp),
                         colors = OutlinedTextFieldDefaults.colors(
-                            focusedBorderColor = Color(0xFF6366F1),
-                            unfocusedBorderColor = Color(0xFFE5E7EB)
+                            focusedBorderColor = Color(0xFF3643FF),
+                            unfocusedBorderColor = Color(0xFFE5E7EB),
+                            focusedLabelColor = Color(0xFF3643FF),
+                            cursorColor = Color(0xFF3643FF)
                         )
                     )
 
-                    Spacer(modifier = Modifier.height(24.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
 
-                    // Tombol Login
+                    // Tombol Sign In
                     Button(
                         onClick = { navController.navigate("profile") },
                         modifier = Modifier
@@ -119,38 +176,41 @@ fun LoginScreen(navController: NavController) {
                             .height(50.dp),
                         shape = RoundedCornerShape(25.dp),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF6366F1)
+                            containerColor = Color(0xFF3643FF)
                         )
                     ) {
                         Text(
                             text = "Sign In",
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Medium
+                            fontWeight = FontWeight.SemiBold,
+                            color = Color.White
                         )
                     }
 
-                    Spacer(modifier = Modifier.height(16.dp))
+                    Spacer(modifier = Modifier.height(20.dp))
 
                     // Link lupa password
                     Text(
                         text = "Lupa Password?",
                         fontSize = 14.sp,
-                        color = Color(0xFF6366F1),
-                        modifier = Modifier.clickable {  }
+                        color = Color(0xFF3643FF),
+                        modifier = Modifier.clickable { /* TODO: navigasi reset password */ }
                     )
 
-                    Spacer(modifier = Modifier.height(32.dp))
+                    Spacer(modifier = Modifier.height(40.dp))
 
-                    // Link ke Registrasi wak
+                    // Link ke Sign Up
                     Row {
                         Text(
                             text = "Belum Punya Akun? ",
-                            color = Color(0xFF6B7280)
+                            color = Color(0xFF6B7280),
+                            fontSize = 14.sp
                         )
                         Text(
-                            text = "Daftar",
-                            color = Color(0xFF6366F1),
+                            text = "Sign up",
+                            color = Color(0xFF3643FF),
                             fontWeight = FontWeight.Bold,
+                            fontSize = 14.sp,
                             modifier = Modifier.clickable {
                                 navController.navigate("signup")
                             }

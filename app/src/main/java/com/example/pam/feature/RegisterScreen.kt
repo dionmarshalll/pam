@@ -39,7 +39,7 @@ fun RegisterScreen(navController: NavController) {
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 32.dp)
-            .verticalScroll(rememberScrollState()), // Penting untuk form yang panjang
+            .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Spacer(modifier = Modifier.height(48.dp))
