@@ -1,4 +1,4 @@
-package com.example.pam
+package com.example.pam.feature
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
