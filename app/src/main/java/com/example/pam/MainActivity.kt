@@ -14,6 +14,8 @@ import com.example.pam.feature.AvatarScreen
 import com.example.pam.feature.LoginScreen
 import com.example.pam.feature.ProfileScreen
 import com.example.pam.feature.RegisterScreen
+import com.example.pam.feature.User
+import com.example.pam.navigation.AppNavigation
 import com.example.pam.ui.theme.PamTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,24 +28,33 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+                    AppNavigation(navController = navController)
 
-                    NavHost(
-                        navController = navController,
-                        startDestination = "login"
-                    ) {
-                        composable("login") {
-                            LoginScreen(navController = navController)
-                        }
-                        composable("profile") {
-                            ProfileScreen(navController = navController)
-                        }
-                        composable("avatar") {
-                            AvatarScreen(navController = navController)
-                        }
-                        composable("register") {
-                            RegisterScreen(navController = navController)
-                        }
-                    }
+//                    NavHost(
+//                        navController = navController,
+//                        startDestination = "login"
+//                    ) {
+//                        composable("login") {
+//                            LoginScreen(navController = navController)
+//                        }
+//                        composable("profile") {
+//                           val user = User(
+//                               firstName = "Fauzan",
+//                               lastName = "Raditya",
+//                               username = "fauzanraditya",
+//                               email = "fauzan@gmail",
+//                               phone = "0812345678",
+//                               address = "Malang,Indonesia",
+//                               dob = "2000-01-01"
+//                           )
+//                        }
+//                        composable("avatar") {
+//                            AvatarScreen(navController = navController)
+//                        }
+//                        composable("register") {
+//                            RegisterScreen(navController = navController)
+//                        }
+//                    }
                 }
             }
         }
