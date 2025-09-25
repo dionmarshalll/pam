@@ -212,7 +212,7 @@ fun LoginScreen(navController: NavController) {
                             fontWeight = FontWeight.Bold,
                             fontSize = 14.sp,
                             modifier = Modifier.clickable {
-                                navController.navigate("signup")
+                                navController.navigate("register")
                             }
                         )
                     }
